@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/innovanta-logo.png" />
+    <link rel="preload" as="image" href="/image.png" />
+    <link rel="preload" as="image" href="/innovanta-logo-transparent.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>INNOVANTA — Student-Led Innovation Ecosystem | Manifest. Build. Impact.</title>
+    <meta name="title" content="INNOVANTA — Student-Led Innovation Ecosystem | Manifest. Build. Impact." />
+    <meta name="description" content="A student-led innovation ecosystem where curious minds collaborate, build meaningful projects, explore technology and turn ambitious ideas into real-world impact." />
+    <meta name="keywords" content="INNOVANTA, student innovation, technology community, AI research, entrepreneurship, hackathons, student tech ecosystem" />
+    <meta name="theme-color" content="#08080c" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="INNOVANTA — Student-Led Innovation Ecosystem" />
+    <meta property="og:description" content="Ideas Into Action. Innovation Into Impact. Manifest. Build. Impact." />
+    <meta property="og:image" content="/innovanta-logo.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="INNOVANTA — Student-Led Innovation Ecosystem" />
+    <meta property="twitter:description" content="Ideas Into Action. Innovation Into Impact. Manifest. Build. Impact." />
+    <meta property="twitter:image" content="/innovanta-logo.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Anti-FOUC Theme Initializer -->
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('innovanta_theme');
+          var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-[#F8F9FC] text-[#555B6E] dark:bg-[#08080c] dark:text-slate-100 antialiased selection:bg-purple-600/30 selection:text-white min-h-screen overflow-x-hidden transition-colors duration-200">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
