@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTheme } from '../context/ThemeContext';
+import { getAssetUrl } from '../utils/asset';
 
 interface BrandLogoProps {
   size?: 'sm' | 'md' | 'lg' | 'hero';
@@ -31,7 +32,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     hero: 'h-20 sm:h-24 md:h-28 w-auto max-w-[280px]',
   };
 
-  const logoSrc = isLight ? '/image.png' : '/innovanta-logo-transparent.png';
+  const logoSrc = isLight ? getAssetUrl('image.png') : getAssetUrl('innovanta-logo-transparent.png');
 
   return (
     <div

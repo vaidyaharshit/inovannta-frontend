@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>INNOVANTA — Redirecting</title>
+    <script type="text/javascript">
+      // GitHub Pages SPA router redirection script
+      // Preserves deep routes across page reloads & direct navigation
+      var pathSegmentsToKeep = 1;
+
+      var l = window.location;
+      var pathParts = l.pathname.split('/').filter(Boolean);
+
+      // If hosted at username.github.io/repo/, keep the repo segment
+      var repoSegment = pathParts.length > 0 ? '/' + pathParts[0] : '';
+      var routePath = pathParts.slice(1).join('/');
+
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        repoSegment + '/?/' +
+        routePath.replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body>
+  </body>
+</html>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { SkipForward } from 'lucide-react';
+import { getAssetUrl } from '../utils/asset';
 
 interface IntroAnimationProps {
   onComplete: () => void;
@@ -81,7 +82,7 @@ export const IntroAnimation: React.FC<IntroAnimationProps> = ({ onComplete }) =>
       {/* Video Element: Autoplay, Muted, Inline, Aspect-ratio preserved */}
       <video
         ref={videoRef}
-        src="/innovanta-intro.mp4"
+        src={getAssetUrl('innovanta-intro.mp4')}
         autoPlay
         muted
         playsInline

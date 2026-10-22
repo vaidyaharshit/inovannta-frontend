@@ -13,12 +13,14 @@ import { ThemeProvider } from './context/ThemeContext';
 const INTRO_STORAGE_KEY = 'innovanta_intro_seen';
 
 export function App() {
-  // Determine page from pathname (/events or /) and hash fallback
+  // Determine page from pathname (/events or /), search query (?/events), and hash fallback (#events)
   const getPageFromLocation = useCallback((): 'home' | 'events' => {
+    if (typeof window === 'undefined') return 'home';
     const pathname = window.location.pathname.toLowerCase();
     const hash = window.location.hash.toLowerCase();
+    const search = window.location.search.toLowerCase();
     
-    if (pathname.includes('/events') || hash.includes('events')) {
+    if (pathname.includes('/events') || hash.includes('events') || search.includes('events')) {
       return 'events';
     }
     return 'home';
@@ -38,7 +40,8 @@ export function App() {
     // 2. Direct /events route: do not show intro
     const pathname = window.location.pathname.toLowerCase();
     const hash = window.location.hash.toLowerCase();
-    if (pathname.includes('/events') || hash.includes('events')) {
+    const search = window.location.search.toLowerCase();
+    if (pathname.includes('/events') || hash.includes('events') || search.includes('events')) {
       sessionStorage.setItem(INTRO_STORAGE_KEY, 'true');
       return false;
     }
@@ -84,12 +87,17 @@ export function App() {
     }
   }, [activePage]);
 
-  // Clean router push that supports HTML5 history path + hash fallback
+  // Clean router push that supports HTML5 history path + subpath + hash fallback
   const handleNavigate = (page: 'home' | 'events') => {
-    const targetPath = page === 'events' ? '/events' : '/';
+    const base = import.meta.env.BASE_URL || '/';
+    const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
+    const targetPath = page === 'events' ? `${cleanBase}/events` : (cleanBase || '/');
     
-    // Push new history state
-    window.history.pushState({ page }, '', targetPath);
+    try {
+      window.history.pushState({ page }, '', targetPath);
+    } catch {
+      window.location.hash = page === 'events' ? '#events' : '#home';
+    }
     setActivePage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
